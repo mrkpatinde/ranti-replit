@@ -1,0 +1,156 @@
+Tu travailles sur le projet Ranti.
+
+Objectif : refaire uniquement la landing page publique de Ranti, sans toucher au back-end, à Supabase, aux migrations, à l’authentification, aux routes privées ou aux server actions.
+
+Important : respecte les documents `.md` du projet. La landing doit rester alignée avec la vision, les principes produit, le modèle de domaine, la base de données et l’API.
+
+Contexte produit :
+Ranti aide les propriétaires africains à suivre leurs loyers simplement :
+
+* savoir qui a payé ;
+* savoir qui est en retard ;
+* garder une preuve de paiement ;
+* générer un reçu / une quittance simple.
+
+Cible :
+Propriétaires africains qui gèrent entre 1 et 20 logements, souvent avec un cahier papier, WhatsApp, des appels, des captures Mobile Money, du cash ou des reçus manuels.
+
+Positionnement :
+Ranti n’est pas un CRM immobilier, pas une marketplace, pas une banque, pas un logiciel comptable complexe.
+C’est un espace simple pour suivre les loyers sans confusion.
+
+Règles produit à respecter :
+
+* Ranti ne promet pas d’encaisser automatiquement les paiements.
+* Les paiements peuvent se faire hors Ranti : cash, Mobile Money, virement ou autre moyen local.
+* Le propriétaire reste la personne qui valide qu’un paiement a bien été reçu.
+* Ranti ne confirme pas automatiquement un paiement.
+* Ranti ne remplace pas la relation propriétaire-locataire.
+* Ranti ne promet pas encore d’envoi automatique WhatsApp/SMS.
+* La page doit aider à comprendre en moins de 5 secondes : qui a payé, qui est en retard, quelle preuve existe.
+
+Tâche exacte :
+Refaire la page :
+`apps/web/src/app/(public)/page.tsx`
+
+Contraintes techniques :
+
+* Next.js App Router.
+* Tailwind CSS déjà installé.
+* Ne pas ajouter de dépendance inutile.
+* Ne pas modifier la structure du projet.
+* Ne pas toucher aux fichiers Supabase.
+* Ne pas modifier les routes `/signup` et `/login`.
+* Les CTA doivent pointer vers :
+
+  * `/signup`
+  * `/login`
+* Garder une page rapide, responsive, mobile-first.
+* Aucun contenu anglais visible.
+* Aucun emoji.
+* Pas de design chargé.
+* Pas d’image externe obligatoire.
+* Utiliser une fausse carte produit simple pour montrer le bénéfice : loyers payés, loyers en retard, preuve disponible, reçu prêt.
+
+Style visuel :
+
+* Design sobre, premium, noir/blanc, très lisible.
+* Inspiré Linear / Vercel / Resend, mais adapté à un produit africain simple.
+* Beaucoup d’espace.
+* Typographie claire.
+* Mobile-first.
+* Pas de décor inutile.
+* Pas d’illustrations génériques IA.
+* Le propriétaire doit comprendre en moins de 5 secondes.
+
+Structure souhaitée de la landing page :
+
+1. Header simple
+
+* Logo texte : Ranti
+* Lien : Se connecter
+
+2. Hero
+   Titre principal :
+   “Vos loyers, sans confusion.”
+
+Sous-titre :
+“Ranti aide les propriétaires à voir qui a payé, qui est en retard, et quelle preuve existe avant toute relance.”
+
+CTA principal :
+“Ouvrir mon espace propriétaire” → `/signup`
+
+CTA secondaire :
+“Se connecter” → `/login`
+
+Micro-contexte :
+“Pensé pour les propriétaires qui gèrent leurs loyers avec WhatsApp, un cahier, des appels ou des captures Mobile Money.”
+
+3. Carte produit visuelle
+   Créer une fausse interface simple avec :
+
+* Ce mois-ci
+* 8 loyers attendus
+* 5 payés
+* 3 en retard
+* 2 reçus prêts
+* exemple de ligne :
+
+  * Aline — Chambre 1 — Payé — Reçu prêt
+  * Koffi — Boutique — En retard — Relancer
+  * Mireille — Appartement — Payé — Preuve disponible
+
+4. Section “Ce que Ranti clarifie”
+   Trois blocs :
+
+* Qui a payé
+* Qui est en retard
+* Quelle preuve existe
+
+5. Section “Adapté au terrain”
+   Mentionner :
+
+* cash ;
+* Mobile Money ;
+* virement ;
+* preuves par capture ;
+* reçus simples ;
+* propriétaires de 1 à 20 logements.
+
+6. Section “Ce que Ranti n’est pas”
+   Court et rassurant :
+
+* Pas un logiciel compliqué.
+* Pas une banque.
+* Pas une marketplace.
+* Pas un outil comptable lourd.
+
+7. CTA final
+   Titre :
+   “Commencez par suivre un seul logement.”
+
+Texte :
+“Ajoutez un lieu, un logement, un locataire, puis suivez les loyers du mois.”
+
+Bouton :
+“Ouvrir mon espace propriétaire” → `/signup`
+
+Critères d’acceptation :
+
+* La landing est entièrement en français.
+* Elle est claire sur mobile.
+* Elle explique Ranti en moins de 5 secondes.
+* Elle ne promet pas de paiement automatique.
+* Elle ne promet pas de relance WhatsApp automatique.
+* Elle ne promet pas de confirmation automatique de paiement.
+* Elle ne mentionne pas YC.
+* Elle ne mentionne pas IA.
+* Elle ne touche qu’à la landing publique, sauf si un petit ajustement CSS global est strictement nécessaire.
+* Le projet doit continuer à compiler avec `npm run build` depuis `apps/web`.
+
+Après modification :
+
+* Résume les fichiers modifiés.
+* Explique brièvement les choix UX.
+* Ne fais aucune migration.
+* Ne change aucune logique d’authentification.
