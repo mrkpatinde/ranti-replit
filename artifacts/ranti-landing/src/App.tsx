@@ -176,7 +176,15 @@ function Home() {
         className="fixed top-0 left-0 right-0 h-16 border-b border-transparent bg-background/80 backdrop-blur-md z-50 transition-colors duration-300 data-[scrolled=true]:border-border"
       >
         <div className="max-w-5xl mx-auto px-6 h-full flex items-center justify-between">
-          <div className="font-bold text-xl tracking-tight text-primary">Ranti</div>
+          <a href="/" className="flex items-center gap-2.5 group">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="32" height="32" rx="7" className="fill-primary"/>
+              <rect x="8" y="10" width="16" height="2.5" rx="1.25" fill="white"/>
+              <rect x="8" y="15" width="12" height="2.5" rx="1.25" fill="white"/>
+              <rect x="8" y="20" width="8" height="2.5" rx="1.25" fill="white"/>
+            </svg>
+            <span className="font-bold text-xl tracking-tight text-primary">Ranti</span>
+          </a>
           <nav>
             <a href="/login" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Se connecter
@@ -189,13 +197,6 @@ function Home() {
         
         {/* 2. Hero Section */}
         <section className="max-w-5xl mx-auto px-6 pt-10 pb-20 md:pb-28">
-          <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}>
-            <div className="mb-6 inline-flex">
-              <span className="inline-flex items-center rounded-full border border-border/60 bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-                Lancé en Afrique francophone — simple, direct, sans fioriture
-              </span>
-            </div>
-          </motion.div>
           
           <motion.h1 
             variants={heroContainerVariants} 
