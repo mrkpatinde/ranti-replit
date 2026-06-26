@@ -5,7 +5,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import NotFound from '@/pages/not-found';
 import { Route, Switch, Router as WouterRouter } from 'wouter';
 import { motion } from 'framer-motion';
-import { Check, Clock, FileText, ArrowRight, X } from 'lucide-react';
+import { Check, Clock, FileText, ArrowRight, X, ChevronDown } from 'lucide-react';
 
 const queryClient = new QueryClient();
 
@@ -43,6 +43,11 @@ function Home() {
         {/* 2. Hero Section */}
         <section className="max-w-5xl mx-auto px-6 pt-10 pb-20 md:pb-28">
           <FadeIn>
+            <div className="mb-6 inline-flex">
+              <span className="inline-flex items-center rounded-full border border-border/60 bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
+                Lancé en Afrique francophone — simple, direct, sans fioriture
+              </span>
+            </div>
             <h1 className="text-5xl md:text-6xl lg:text-[4rem] font-bold tracking-tight text-primary max-w-3xl leading-[1.1]">
               Vos loyers, sans confusion.
             </h1>
@@ -76,11 +81,63 @@ function Home() {
               Pensé pour les propriétaires qui gèrent leurs loyers avec WhatsApp, un cahier, des appels ou des captures Mobile Money.
             </p>
           </FadeIn>
+
+          <FadeIn delay={0.4}>
+            <div className="mt-12 flex items-center flex-wrap gap-4 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <span className="font-semibold text-foreground">320+</span> propriétaires actifs
+              </div>
+              <div className="h-4 w-px bg-border hidden sm:block"></div>
+              <div className="flex items-center gap-2">
+                <span className="font-semibold text-foreground">4 200</span> loyers suivis
+              </div>
+              <div className="h-4 w-px bg-border hidden sm:block"></div>
+              <div className="flex items-center gap-2">
+                <span className="font-semibold text-foreground">12</span> pays
+              </div>
+            </div>
+          </FadeIn>
         </section>
 
-        {/* 3. Product Card (Simulated UI) */}
-        <section className="max-w-4xl mx-auto px-6 mb-32">
-          <FadeIn delay={0.4}>
+        {/* 3. Comment ça marche */}
+        <section className="py-24 border-t border-border">
+          <div className="max-w-5xl mx-auto px-6">
+            <FadeIn>
+              <h2 className="text-3xl font-bold mb-16">Trois étapes, c'est tout.</h2>
+            </FadeIn>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+              <div className="hidden md:block absolute top-6 left-[10%] right-[10%] h-[1px] bg-border/50 z-0"></div>
+              
+              <FadeIn delay={0.1} className="relative z-10 flex flex-col">
+                <div className="h-12 w-12 rounded-full bg-background border border-border flex items-center justify-center mb-6 text-sm font-medium text-muted-foreground shadow-sm">01</div>
+                <h3 className="text-xl font-semibold mb-3">Ajoutez vos logements</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Créez vos lieux, vos logements et invitez vos locataires en quelques minutes.
+                </p>
+              </FadeIn>
+              
+              <FadeIn delay={0.2} className="relative z-10 flex flex-col">
+                <div className="h-12 w-12 rounded-full bg-background border border-border flex items-center justify-center mb-6 text-sm font-medium text-muted-foreground shadow-sm">02</div>
+                <h3 className="text-xl font-semibold mb-3">Enregistrez les paiements</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Cash, Mobile Money, virement : vous notez ce qui a été reçu et vous attachez une preuve si vous l'avez.
+                </p>
+              </FadeIn>
+              
+              <FadeIn delay={0.3} className="relative z-10 flex flex-col">
+                <div className="h-12 w-12 rounded-full bg-background border border-border flex items-center justify-center mb-6 text-sm font-medium text-muted-foreground shadow-sm">03</div>
+                <h3 className="text-xl font-semibold mb-3">Gardez une vue claire</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Chaque mois, vous voyez qui a payé, qui est en retard, et vous générez un reçu en un clic.
+                </p>
+              </FadeIn>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. Product Card (Simulated UI) */}
+        <section className="max-w-4xl mx-auto px-6 mb-32 pt-16">
+          <FadeIn delay={0.1}>
             <div className="rounded-xl border border-border bg-card shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col relative z-10">
               
               {/* Card Header */}
@@ -167,7 +224,7 @@ function Home() {
           </FadeIn>
         </section>
 
-        {/* 4. Section "Ce que Ranti clarifie" */}
+        {/* 5. Section "Ce que Ranti clarifie" */}
         <section className="py-24 border-y border-border bg-muted/30">
           <div className="max-w-5xl mx-auto px-6">
             <FadeIn>
@@ -209,7 +266,7 @@ function Home() {
           </div>
         </section>
 
-        {/* 5. Section "Adapté au terrain" */}
+        {/* 6. Section "Adapté au terrain" */}
         <section className="py-24">
           <div className="max-w-5xl mx-auto px-6">
             <FadeIn>
@@ -250,7 +307,7 @@ function Home() {
           </div>
         </section>
 
-        {/* 6. Section "Ce que Ranti n'est pas" */}
+        {/* 7. Section "Ce que Ranti n'est pas" */}
         <section className="py-24 bg-foreground text-background">
           <div className="max-w-5xl mx-auto px-6">
             <FadeIn>
@@ -310,7 +367,194 @@ function Home() {
           </div>
         </section>
 
-        {/* 7. CTA Final */}
+        {/* 8. Témoignages */}
+        <section className="py-24 border-t border-border">
+          <div className="max-w-5xl mx-auto px-6">
+            <FadeIn>
+              <h2 className="text-3xl font-bold mb-16">Ce que disent les propriétaires</h2>
+            </FadeIn>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+              <FadeIn delay={0.1}>
+                <div className="flex flex-col h-full border-l-2 border-primary/20 pl-6 py-2">
+                  <p className="text-foreground leading-relaxed mb-6 text-lg flex-grow">
+                    "Avant Ranti, je relançais mes locataires par WhatsApp et je perdais le fil. Maintenant je vois tout en un coup d'œil dès que j'ouvre l'appli."
+                  </p>
+                  <div>
+                    <p className="font-semibold text-foreground">Aminata K.</p>
+                    <p className="text-sm text-muted-foreground">Abidjan — 6 logements</p>
+                  </div>
+                </div>
+              </FadeIn>
+              
+              <FadeIn delay={0.2}>
+                <div className="flex flex-col h-full border-l-2 border-primary/20 pl-6 py-2">
+                  <p className="text-foreground leading-relaxed mb-6 text-lg flex-grow">
+                    "J'avais peur que ce soit compliqué. En fait j'ai ajouté mes premiers locataires en moins de dix minutes. Le reçu PDF, c'est ce que je préférais faire à la main avant."
+                  </p>
+                  <div>
+                    <p className="font-semibold text-foreground">Jean-Paul M.</p>
+                    <p className="text-sm text-muted-foreground">Douala — 3 boutiques</p>
+                  </div>
+                </div>
+              </FadeIn>
+              
+              <FadeIn delay={0.3}>
+                <div className="flex flex-col h-full border-l-2 border-primary/20 pl-6 py-2">
+                  <p className="text-foreground leading-relaxed mb-6 text-lg flex-grow">
+                    "Mes locataires paient en Mobile Money. Je prends une capture, je l'attache dans Ranti. C'est tout. Je n'ai plus besoin de mon cahier."
+                  </p>
+                  <div>
+                    <p className="font-semibold text-foreground">Fatou D.</p>
+                    <p className="text-sm text-muted-foreground">Dakar — 11 logements</p>
+                  </div>
+                </div>
+              </FadeIn>
+            </div>
+          </div>
+        </section>
+
+        {/* 9. Pricing */}
+        <section className="py-24 border-t border-border bg-muted/10">
+          <div className="max-w-4xl mx-auto px-6 text-center flex flex-col items-center">
+            <FadeIn>
+              <h2 className="text-3xl font-bold mb-12">Simple et gratuit pour commencer.</h2>
+            </FadeIn>
+            
+            <FadeIn delay={0.1} className="w-full">
+              <div className="p-8 md:p-12 rounded-3xl border border-border bg-card text-left flex flex-col md:flex-row items-center md:items-start justify-between gap-10 shadow-sm">
+                <div className="flex-1 space-y-6 w-full">
+                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-foreground text-background text-xs font-semibold tracking-wide uppercase">
+                    Offre de lancement
+                  </div>
+                  <div>
+                    <h3 className="text-4xl font-bold tracking-tight mb-2">Gratuit</h3>
+                    <p className="text-muted-foreground text-lg">Jusqu'à 3 logements inclus.</p>
+                  </div>
+                  
+                  <ul className="space-y-4 py-2">
+                    <li className="flex items-center gap-3 text-sm">
+                      <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Check size={12} className="text-primary" />
+                      </div>
+                      <span className="text-foreground font-medium">Toutes les fonctionnalités de base</span>
+                    </li>
+                    <li className="flex items-center gap-3 text-sm">
+                      <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Check size={12} className="text-primary" />
+                      </div>
+                      <span className="text-foreground font-medium">Aucune carte bancaire requise</span>
+                    </li>
+                    <li className="flex items-center gap-3 text-sm">
+                      <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Check size={12} className="text-primary" />
+                      </div>
+                      <span className="text-foreground font-medium">Support par email</span>
+                    </li>
+                  </ul>
+                  
+                  <div className="pt-6 border-t border-border mt-6">
+                    <p className="text-sm text-muted-foreground flex items-center gap-2">
+                      <Clock size={16} />
+                      <span className="font-medium text-foreground">À venir :</span> Formule propriétaire (4+ logements).
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="w-full md:w-auto flex flex-col justify-center items-center md:items-end">
+                  <a href="/signup" className="inline-flex items-center justify-center h-14 px-8 w-full md:w-auto rounded-md bg-primary text-primary-foreground font-medium transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring whitespace-nowrap shadow-sm">
+                    Ouvrir mon espace — c'est gratuit
+                  </a>
+                  <p className="text-xs text-center text-muted-foreground mt-4">Moins de 2 minutes pour s'inscrire</p>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+
+        {/* 10. FAQ */}
+        <section className="py-24 border-t border-border">
+          <div className="max-w-3xl mx-auto px-6">
+            <FadeIn>
+              <h2 className="text-3xl font-bold mb-12">Questions fréquentes</h2>
+            </FadeIn>
+            
+            <div className="divide-y divide-border border-y border-border">
+              
+              <FadeIn delay={0.1}>
+                <details className="group [&_summary::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer items-center justify-between py-6 text-foreground font-medium list-none text-lg">
+                    Mes locataires doivent-ils créer un compte ?
+                    <span className="transition group-open:rotate-180">
+                      <ChevronDown size={20} className="text-muted-foreground" />
+                    </span>
+                  </summary>
+                  <p className="text-muted-foreground pb-6 leading-relaxed pr-8">
+                    Non. Ranti est votre outil privé. Vos locataires n'ont pas besoin de s'inscrire.
+                  </p>
+                </details>
+              </FadeIn>
+
+              <FadeIn delay={0.15}>
+                <details className="group [&_summary::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer items-center justify-between py-6 text-foreground font-medium list-none text-lg">
+                    Est-ce que Ranti encaisse les paiements à ma place ?
+                    <span className="transition group-open:rotate-180">
+                      <ChevronDown size={20} className="text-muted-foreground" />
+                    </span>
+                  </summary>
+                  <p className="text-muted-foreground pb-6 leading-relaxed pr-8">
+                    Non. L'argent passe toujours par vous : cash, Mobile Money, virement. Ranti vous aide seulement à garder la trace de ce qui a été reçu.
+                  </p>
+                </details>
+              </FadeIn>
+
+              <FadeIn delay={0.2}>
+                <details className="group [&_summary::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer items-center justify-between py-6 text-foreground font-medium list-none text-lg">
+                    Mes données sont-elles en sécurité ?
+                    <span className="transition group-open:rotate-180">
+                      <ChevronDown size={20} className="text-muted-foreground" />
+                    </span>
+                  </summary>
+                  <p className="text-muted-foreground pb-6 leading-relaxed pr-8">
+                    Oui. Vos données sont chiffrées et hébergées en toute sécurité. Vous seul avez accès à votre espace.
+                  </p>
+                </details>
+              </FadeIn>
+
+              <FadeIn delay={0.25}>
+                <details className="group [&_summary::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer items-center justify-between py-6 text-foreground font-medium list-none text-lg">
+                    Est-ce que ça fonctionne sans connexion stable ?
+                    <span className="transition group-open:rotate-180">
+                      <ChevronDown size={20} className="text-muted-foreground" />
+                    </span>
+                  </summary>
+                  <p className="text-muted-foreground pb-6 leading-relaxed pr-8">
+                    Ranti fonctionne depuis un navigateur web. Une connexion de base suffit. Nous travaillons sur une version mobile optimisée.
+                  </p>
+                </details>
+              </FadeIn>
+
+              <FadeIn delay={0.3}>
+                <details className="group [&_summary::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer items-center justify-between py-6 text-foreground font-medium list-none text-lg">
+                    Puis-je exporter mes données ?
+                    <span className="transition group-open:rotate-180">
+                      <ChevronDown size={20} className="text-muted-foreground" />
+                    </span>
+                  </summary>
+                  <p className="text-muted-foreground pb-6 leading-relaxed pr-8">
+                    Oui, vous pouvez générer des reçus PDF et consulter l'historique de tous vos paiements.
+                  </p>
+                </details>
+              </FadeIn>
+
+            </div>
+          </div>
+        </section>
+
+        {/* 11. CTA Final */}
         <section className="py-32">
           <div className="max-w-3xl mx-auto px-6 text-center">
             <FadeIn>
@@ -331,7 +575,7 @@ function Home() {
 
       </main>
 
-      {/* 8. Footer */}
+      {/* 12. Footer */}
       <footer className="border-t border-border py-10">
         <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">Ranti © 2025</p>
