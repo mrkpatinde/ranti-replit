@@ -204,11 +204,23 @@ function Home() {
 
         {/* ── HERO ───────────────────────────────────────────────────────────── */}
         <section className="relative flex flex-col items-center text-center pt-36 pb-0 overflow-hidden">
-          {/* Background blobs */}
-          <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px]">
-            <div className="absolute top-20 left-[15%] w-72 h-72 rounded-full bg-muted/70 blur-[80px]" />
-            <div className="absolute top-10 right-[10%] w-64 h-64 rounded-full bg-muted/50 blur-[80px]" />
-            <div className="absolute top-32 left-1/2 w-56 h-56 rounded-full bg-muted/40 blur-[100px] -translate-x-1/2" />
+          {/* Background blobs — slow drift */}
+          <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] overflow-hidden">
+            <motion.div
+              animate={{ x: [0, 38, -22, 14, 0], y: [0, -28, 20, -12, 0] }}
+              transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
+              className="absolute top-24 left-[12%] w-80 h-80 rounded-full bg-muted/80 blur-[90px]"
+            />
+            <motion.div
+              animate={{ x: [0, -32, 18, -8, 0], y: [0, 24, -32, 12, 0] }}
+              transition={{ duration: 28, repeat: Infinity, ease: "easeInOut", repeatType: "mirror", delay: 4 }}
+              className="absolute top-8 right-[8%] w-72 h-72 rounded-full bg-muted/60 blur-[80px]"
+            />
+            <motion.div
+              animate={{ x: [0, 20, -28, 10, 0], y: [0, 30, -18, 22, 0], scale: [1, 1.08, 0.96, 1.04, 1] }}
+              transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", repeatType: "mirror", delay: 9 }}
+              className="absolute top-40 left-[38%] w-64 h-64 rounded-full bg-muted/50 blur-[100px]"
+            />
           </div>
 
           <div className="relative max-w-4xl mx-auto px-6 flex flex-col items-center">
@@ -347,10 +359,10 @@ function Home() {
         <section className="py-28">
           <div className="max-w-5xl mx-auto px-6">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, ease: EASE }}
+              viewport={{ once: true, margin: "0px" }}
+              transition={{ duration: 0.85, ease: EASE }}
               className="text-center mb-20"
             >
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-3">Comment ça marche</p>
@@ -454,21 +466,30 @@ function Home() {
                   )
                 }
               ].map((step, i) => (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.7, ease: EASE }}
                   className={`grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center ${step.flip ? "md:[&>*:first-child]:order-2" : ""}`}
                 >
-                  <div className="flex flex-col">
+                  <motion.div
+                    className="flex flex-col"
+                    initial={{ opacity: 0, y: 60 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "0px" }}
+                    transition={{ duration: 0.9, ease: EASE }}
+                  >
                     <span className="text-4xl font-bold text-muted/60 mb-4 font-mono">{step.num}</span>
                     <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-4">{step.title}</h3>
                     <p className="text-muted-foreground leading-relaxed">{step.body}</p>
-                  </div>
-                  <div>{step.visual}</div>
-                </motion.div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 60 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "0px" }}
+                    transition={{ duration: 0.9, delay: 0.12, ease: EASE }}
+                  >
+                    {step.visual}
+                  </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -478,16 +499,22 @@ function Home() {
         <section className="py-24 border-t border-border bg-muted/15">
           <div className="max-w-5xl mx-auto px-6">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, ease: EASE }}
+              viewport={{ once: true, margin: "0px" }}
+              transition={{ duration: 0.85, ease: EASE }}
               className="text-center mb-16"
             >
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">La clarté, un mois après l'autre.</h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "0px" }}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+            >
               {[
                 { icon: <Check size={20} />, title: "Qui a payé", body: "Vue instantanée des paiements confirmés du mois, logement par logement." },
                 { icon: <Clock size={20} />, title: "Qui est en retard", body: "Identifiez immédiatement les locataires qui n'ont pas encore payé." },
@@ -498,10 +525,7 @@ function Home() {
               ].map((f, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: (i % 3) * 0.08, ease: EASE }}
+                  variants={{ hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } } }}
                   whileHover={{ y: -4 }}
                   className="p-6 rounded-2xl border border-border bg-card shadow-sm flex flex-col gap-4 cursor-default"
                 >
@@ -514,7 +538,7 @@ function Home() {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -522,16 +546,22 @@ function Home() {
         <section className="py-28 bg-foreground text-background">
           <div className="max-w-5xl mx-auto px-6">
             <motion.h2
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, ease: EASE }}
+              viewport={{ once: true, margin: "0px" }}
+              transition={{ duration: 0.85, ease: EASE }}
               className="text-3xl md:text-4xl font-bold tracking-tight text-background mb-16 text-center"
             >
               Ce que Ranti n'est pas
             </motion.h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "0px" }}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
+            >
               {[
                 { title: "Pas un logiciel compliqué", body: "Aucune configuration. Vous ajoutez vos logements et vous commencez." },
                 { title: "Pas une banque", body: "L'argent ne passe pas par nous. Vous encaissez comme d'habitude." },
@@ -540,10 +570,7 @@ function Home() {
               ].map((item, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
+                  variants={{ hidden: { opacity: 0, y: 60 }, visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: EASE } } }}
                   className="pt-5 border-t border-background/20"
                 >
                   <div className="flex items-center gap-2 mb-3">
@@ -553,7 +580,7 @@ function Home() {
                   <p className="text-sm text-background/60 leading-relaxed">{item.body}</p>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -561,20 +588,20 @@ function Home() {
         <section className="py-28 border-b border-border">
           <div className="max-w-4xl mx-auto px-6">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, ease: EASE }}
+              viewport={{ once: true, margin: "0px" }}
+              transition={{ duration: 0.85, ease: EASE }}
               className="text-center mb-16"
             >
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Simple et gratuit pour commencer.</h2>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
+              viewport={{ once: true, margin: "0px" }}
+              transition={{ duration: 0.9, delay: 0.08, ease: EASE }}
               whileHover={{ y: -4 }}
               className="rounded-3xl border border-border bg-card p-8 md:p-12 shadow-sm flex flex-col md:flex-row gap-10 md:gap-16 items-start"
             >
@@ -624,10 +651,10 @@ function Home() {
         <section className="py-24">
           <div className="max-w-2xl mx-auto px-6">
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, ease: EASE }}
+              viewport={{ once: true, margin: "0px" }}
+              transition={{ duration: 0.85, ease: EASE }}
               className="text-3xl font-bold tracking-tight mb-12"
             >
               Questions fréquentes
@@ -644,30 +671,30 @@ function Home() {
         <section className="py-32 bg-muted/20 border-t border-border">
           <div className="max-w-3xl mx-auto px-6 text-center flex flex-col items-center">
             <motion.h2
-              initial={{ opacity: 0, y: 40, scale: 0.96 }}
+              initial={{ opacity: 0, y: 60, scale: 0.97 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8, ease: EASE }}
+              viewport={{ once: true, margin: "0px" }}
+              transition={{ duration: 0.9, ease: EASE }}
               className="text-4xl md:text-5xl font-bold tracking-tight mb-6"
             >
               Commencez par suivre un seul logement.
             </motion.h2>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: 0.15, ease: EASE }}
+              viewport={{ once: true, margin: "0px" }}
+              transition={{ duration: 0.75, delay: 0.15, ease: EASE }}
               className="text-lg text-muted-foreground mb-10 max-w-md"
             >
               Ajoutez un lieu, un logement, un locataire, puis suivez les loyers du mois.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: 0.25, ease: EASE }}
+              viewport={{ once: true, margin: "0px" }}
+              transition={{ duration: 0.75, delay: 0.28, ease: EASE }}
             >
               <motion.a
                 href="/signup"
