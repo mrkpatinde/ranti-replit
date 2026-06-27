@@ -206,7 +206,7 @@ function Home() {
         <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
           <a href="/" className="flex items-center gap-2.5">
             <RantiLogo size={26} />
-            <RantiWordmark size="text-lg" />
+            <span className="font-bold text-lg tracking-tight text-foreground">Ranti</span>
           </a>
           <div className="flex items-center gap-3">
             <a href="/login" className="hidden sm:block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
