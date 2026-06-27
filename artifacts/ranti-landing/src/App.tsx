@@ -150,7 +150,7 @@ function Home() {
     { text: "J'ai renseigné mes baux en vingt minutes. Depuis, Ranti gère les relances. Le reçu PDF sort tout seul après ma validation — c'est ce que je faisais à la main avant.", name: "Jean-Paul M.", location: "Douala — 3 boutiques" },
     { text: "Mes locataires reçoivent le lien de relance automatiquement. Ils confirment, je valide, le reçu part. Je n'ai plus besoin de mon cahier.", name: "Fatou D.", location: "Dakar — 11 logements" },
     { text: "Simple, rapide, sans configuration. J'ai renseigné mes baux et Ranti a pris en charge les relances. Exactement ce qu'il me fallait.", name: "Moussa B.", location: "Bamako — 4 logements" },
-    { text: "Je recommande à tous les propriétaires qui gèrent encore leurs loyers sur papier. Ranti relance à votre place et génère les reçus. Le gain de temps est réel.", name: "Chantal N.", location: "Yaoundé — 7 logements" },
+    { text: "Je recommande à tous les propriétaires qui gèrent encore leurs loyers sur papier. Ranti relance à votre place et génère les reçus après votre validation. Le gain de temps est réel.", name: "Chantal N.", location: "Yaoundé — 7 logements" },
   ];
 
   const faqs = [
@@ -291,7 +291,6 @@ function Home() {
               {[
                 { value: 320, suffix: "+", label: "propriétaires actifs" },
                 { value: 4200, suffix: "", label: "loyers suivis" },
-                { value: 1, suffix: "", label: "pays (pilote Bénin)" },
               ].map((s, i) => (
                 <div key={i} className="flex items-baseline gap-2">
                   <span className="text-2xl font-bold text-foreground tracking-tight">
@@ -366,7 +365,7 @@ function Home() {
               className="text-center mb-20"
             >
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-3">Comment ça marche</p>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Renseignez le bail. Ranti fait le reste.</h2>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Renseignez le bail. Ranti automatise le suivi.</h2>
             </motion.div>
 
             <div className="flex flex-col gap-24">
@@ -524,7 +523,7 @@ function Home() {
                 { icon: <Shield size={20} />, title: "Vous validez l'encaissement", body: "Seul vous confirmez qu'un paiement a bien été reçu. Ranti ne valide jamais à votre place." },
                 { icon: <FileText size={20} />, title: "Reçus générés automatiquement", body: "Après votre validation, le reçu PDF est créé et envoyé au locataire. Zéro effort." },
                 { icon: <Clock size={20} />, title: "Suivi des échéances", body: "Ranti calcule les dates de paiement à partir du bail et les suit mois après mois." },
-                { icon: <Zap size={20} />, title: "Adapté au terrain africain", body: "Cash, Mobile Money, virement — tous les modes de paiement pris en charge." },
+                { icon: <Zap size={20} />, title: "Adapté au terrain africain", body: "Cash, Mobile Money, virement — tous vos modes de paiement sont suivis dans Ranti." },
               ].map((f, i) => (
                 <motion.div
                   key={i}
@@ -680,7 +679,7 @@ function Home() {
               transition={{ duration: 0.9, ease: EASE }}
               className="text-4xl md:text-5xl font-bold tracking-tight mb-6"
             >
-              Renseignez un bail. Ranti s'occupe du reste.
+              Renseignez un bail. Ranti relance, vous validez.
             </motion.h2>
 
             <motion.p
