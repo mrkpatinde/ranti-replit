@@ -86,11 +86,11 @@ function LedgerMark({ className = "text-foreground/30" }: { className?: string }
   );
 }
 
-/** Nom Ranti en logotype split-weight */
+/** Nom Ranti en logotype — thin aéré + black serré */
 function RantiWordmark({ size = "text-lg" }: { size?: string }) {
   return (
-    <span className={`${size} tracking-tight leading-none select-none`} aria-label="Ranti">
-      <span className="font-light text-foreground">Ran</span><span className="font-black text-foreground">ti</span>
+    <span className={`${size} leading-none select-none`} aria-label="Ranti">
+      <span className="font-thin tracking-[0.18em] text-foreground/60">RAN</span><span className="font-black tracking-[-0.03em] text-foreground">TI</span>
     </span>
   );
 }
@@ -178,6 +178,7 @@ function Home() {
   ];
 
   const faqs = [
+    { q: "Pourquoi Ranti ?", a: "Parce que gérer ses loyers sur papier, par WhatsApp ou sur des screenshots Mobile Money, ça fonctionne — jusqu'au jour où ça ne fonctionne plus. Ranti prend en charge les relances et les reçus sans vous imposer un logiciel compliqué. Vous gardez le contrôle, Ranti fait le reste." },
     { q: "Mes locataires doivent-ils créer un compte ?", a: "Non. Ranti leur envoie un lien par message. Ils cliquent pour confirmer avoir payé, sans créer de compte. Ranti reste votre outil privé." },
     { q: "Est-ce que Ranti encaisse les paiements à ma place ?", a: "Non. L'argent passe toujours par vous : cash, Mobile Money ou virement. Ranti suit les échéances et relance automatiquement, mais c'est vous qui validez que le paiement a bien été encaissé." },
     { q: "Est-ce que Ranti peut confirmer qu'un locataire a payé ?", a: "Non. Le locataire peut confirmer via le lien qu'il a payé, mais seul vous validez l'encaissement dans votre espace. Ranti ne valide jamais à votre place." },
@@ -205,7 +206,7 @@ function Home() {
         <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
           <a href="/" className="flex items-center gap-2.5">
             <RantiLogo size={26} />
-            <span className="font-bold text-lg tracking-tight text-primary">Ranti</span>
+            <RantiWordmark size="text-lg" />
           </a>
           <div className="flex items-center gap-3">
             <a href="/login" className="hidden sm:block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
@@ -248,17 +249,6 @@ function Home() {
           </div>
 
           <div className="relative max-w-4xl mx-auto px-6 flex flex-col items-center">
-            {/* Eyebrow */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.15, ease: EASE }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-muted/50 text-xs font-medium text-muted-foreground mb-8"
-            >
-              <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
-              Registre de loyers pour propriétaires africains
-            </motion.div>
-
             {/* Title */}
             <motion.h1
               variants={heroContainer}
@@ -654,10 +644,8 @@ function Home() {
                 </div>
                 <ul className="space-y-3">
                   {["Toutes les fonctionnalités de base", "Aucune carte bancaire requise", "Support par email"].map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-sm">
-                      <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <Check size={11} className="text-primary" />
-                      </div>
+                    <li key={item} className="flex items-center gap-3.5 text-sm">
+                      <LedgerMark className="text-foreground/40" />
                       <span className="text-foreground font-medium">{item}</span>
                     </li>
                   ))}
@@ -721,11 +709,9 @@ function Home() {
                   <motion.li
                     key={i}
                     variants={{ hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: EASE } } }}
-                    className="flex items-center gap-3"
+                    className="flex items-center gap-3.5"
                   >
-                    <div className="h-5 w-5 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
-                      <Check size={11} className="text-foreground" />
-                    </div>
+                    <LedgerMark className="text-foreground/40" />
                     <span className="text-foreground font-medium">{item}</span>
                   </motion.li>
                 ))}
