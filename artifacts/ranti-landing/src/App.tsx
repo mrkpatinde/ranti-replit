@@ -71,6 +71,30 @@ function RantiLogo({ size = 28 }: { size?: number }) {
   );
 }
 
+/** Motif Ranti miniaturisé — 3 barres décroissantes, utilisé comme puce de liste */
+function LedgerMark({ className = "text-foreground/30" }: { className?: string }) {
+  return (
+    <svg
+      width="13" height="11" viewBox="0 0 13 11"
+      fill="none" aria-hidden="true"
+      className={`flex-shrink-0 ${className}`}
+    >
+      <rect x="0" y="0"   width="13" height="2" rx="1" fill="currentColor" />
+      <rect x="0" y="4.5" width="9.5" height="2" rx="1" fill="currentColor" />
+      <rect x="0" y="9"   width="6"   height="2" rx="1" fill="currentColor" />
+    </svg>
+  );
+}
+
+/** Nom Ranti en logotype split-weight */
+function RantiWordmark({ size = "text-lg" }: { size?: string }) {
+  return (
+    <span className={`${size} tracking-tight leading-none select-none`} aria-label="Ranti">
+      <span className="font-light text-foreground">Ran</span><span className="font-black text-foreground">ti</span>
+    </span>
+  );
+}
+
 // ─── Dashboard Card (product visual) ─────────────────────────────────────────
 function DashboardCard() {
   const rows = [
