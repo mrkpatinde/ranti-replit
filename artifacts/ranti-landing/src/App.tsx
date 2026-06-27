@@ -169,13 +169,6 @@ function DashboardCard() {
 function Home() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const testimonials = [
-    { text: "Avant, je relançais mes locataires moi-même par WhatsApp et je perdais le fil. Maintenant Ranti s'en charge. Je valide juste l'encaissement.", name: "Aminata K.", location: "Abidjan · 6 logements" },
-    { text: "J'ai renseigné mes baux en vingt minutes. Depuis, Ranti gère les relances et génère les reçus après ma validation. Ce que je faisais manuellement avant.", name: "Jean-Paul M.", location: "Douala · 3 boutiques" },
-    { text: "Mes locataires reçoivent le lien de relance automatiquement. Ils confirment, je valide, le reçu part. Je n'ai plus besoin de mon cahier.", name: "Fatou D.", location: "Dakar · 11 logements" },
-    { text: "Simple, rapide, sans configuration. J'ai renseigné mes baux et Ranti a pris en charge les relances. Exactement ce qu'il me fallait.", name: "Moussa B.", location: "Bamako · 4 logements" },
-    { text: "Je recommande à tous les propriétaires qui gèrent encore leurs loyers sur papier. Ranti relance à votre place et génère les reçus après votre validation. Le gain de temps est réel.", name: "Chantal N.", location: "Yaoundé · 7 logements" },
-  ];
 
   const faqs = [
     { q: "Pourquoi Ranti ?", a: "Parce que gérer ses loyers sur papier, par WhatsApp ou sur des screenshots Mobile Money, ça fonctionne — jusqu'au jour où ça ne fonctionne plus. Ranti prend en charge les relances et les reçus sans vous imposer un logiciel compliqué. Vous gardez le contrôle, Ranti fait le reste." },
@@ -345,38 +338,58 @@ function Home() {
           </motion.div>
         </section>
 
-        {/* ── TESTIMONIALS SCROLLER ──────────────────────────────────────────── */}
-        <section className="pt-28 pb-4 overflow-hidden">
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: EASE }}
-            className="text-center text-xs font-medium text-muted-foreground uppercase tracking-widest mb-10"
-          >
-            Ce que disent les propriétaires
-          </motion.p>
+        {/* ── ENGAGEMENTS ────────────────────────────────────────────────────── */}
+        <section className="pt-28 pb-12">
+          <div className="max-w-5xl mx-auto px-6">
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: EASE }}
+              className="text-center text-xs font-medium text-muted-foreground uppercase tracking-widest mb-12"
+            >
+              Ce sur quoi Ranti est construit
+            </motion.p>
 
-          {/* Marquee */}
-          <div className="relative">
-            <div className="flex gap-5 animate-marquee whitespace-nowrap w-max">
-              {[...testimonials, ...testimonials].map((t, i) => (
-                <div
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-border rounded-2xl overflow-hidden border border-border"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
+            >
+              {[
+                {
+                  icon: <Shield size={18} />,
+                  title: "Vous gardez le contrôle",
+                  body: "Ranti ne valide jamais un paiement à votre place. Vous seul confirmez qu'un loyer a été encaissé, avant que le reçu soit émis.",
+                },
+                {
+                  icon: <Shield size={18} />,
+                  title: "Vos données restent privées",
+                  body: "Baux, locataires, encaissements : personne d'autre n'y accède. Données chiffrées, hébergées en sécurité, accessibles uniquement par vous.",
+                },
+                {
+                  icon: <Zap size={18} />,
+                  title: "Adapté à votre réalité",
+                  body: "Cash, Mobile Money, virement bancaire : tous vos modes de paiement sont pris en charge. Conçu pour fonctionner sans infrastructure bancaire.",
+                },
+              ].map((item, i) => (
+                <motion.div
                   key={i}
-                  className="inline-flex flex-col w-80 flex-shrink-0 p-7 rounded-2xl border border-border bg-card"
+                  variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } } }}
+                  className="bg-card px-8 py-8 flex flex-col gap-4"
                 >
-                  <span className="text-5xl font-serif leading-none text-foreground/10 mb-4 select-none">"</span>
-                  <p className="text-sm text-foreground leading-relaxed whitespace-normal flex-1 mb-6">{t.text}</p>
-                  <div className="pt-5 border-t border-border/60">
-                    <p className="text-sm font-semibold text-foreground">{t.name}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{t.location}</p>
+                  <div className="h-9 w-9 rounded-xl bg-muted/60 border border-border/60 flex items-center justify-center text-muted-foreground flex-shrink-0">
+                    {item.icon}
                   </div>
-                </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.body}</p>
+                  </div>
+                </motion.div>
               ))}
-            </div>
-            {/* Fade edges */}
-            <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-background to-transparent" />
-            <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-background to-transparent" />
+            </motion.div>
           </div>
         </section>
 
