@@ -1,0 +1,83 @@
+Lis les documents `.md` du repo avant de modifier la landing page, puis adapte le wording pour qu’il reflète mieux la vraie logique produit de Ranti.
+
+Clarification importante : Ranti n’est pas seulement un cahier où le propriétaire regarde qui est en retard et relance lui-même. Le propriétaire configure d’abord les informations du bail : logement, locataire, montant du loyer, périodicité, date d’échéance, début du bail, etc.
+
+À partir du bail, Ranti doit comprendre automatiquement les échéances de loyer et préparer les relances. Le cœur du wording doit donc être :
+
+“Le propriétaire renseigne le bail une fois. Ranti suit les loyers, relance automatiquement le locataire au bon moment, récupère la confirmation de paiement, puis permet au propriétaire de valider l’encaissement avant génération du reçu.”
+
+Le flow à refléter dans la landing :
+
+1. Le propriétaire crée son espace.
+2. Il ajoute sa propriété, son logement, son locataire et les informations du bail.
+3. Ranti génère les échéances de loyer à partir du bail.
+4. Quand une échéance approche ou devient en retard, Ranti envoie automatiquement une relance au locataire.
+5. Le message de relance contient un lien.
+6. Le locataire peut ouvrir le lien et confirmer qu’il a déjà payé.
+7. Ranti informe le propriétaire.
+8. Le propriétaire vérifie et confirme l’encaissement dans son espace.
+9. Une fois l’encaissement confirmé par le propriétaire, Ranti génère automatiquement le reçu/quittance.
+10. Le reçu est envoyé au locataire et reste disponible comme preuve.
+
+Point clé de wording :
+Ne pas dire que “le propriétaire relance le locataire” comme si tout était manuel. Dire plutôt que “Ranti relance automatiquement selon les règles du bail”, tout en gardant le propriétaire comme personne qui confirme réellement l’encaissement.
+
+Le propriétaire reste la personne qui valide qu’un paiement a bien été reçu. Ranti ne doit jamais prétendre confirmer un paiement sans validation du propriétaire.
+
+Positionnement à garder :
+Ranti est le cahier de loyers moderne des propriétaires africains.
+
+Promesse à mettre en avant :
+Le propriétaire renseigne ses baux une fois. Ensuite Ranti l’aide à savoir qui doit payer, qui a confirmé avoir payé, ce qui reste en retard, quelles preuves existent, et quels reçus ont été générés.
+
+Hero proposé :
+Titre :
+Le cahier de loyers qui suit, relance et garde les preuves pour vous.
+
+Sous-titre :
+Ajoutez vos logements, vos locataires et vos baux. Ranti suit les échéances, relance automatiquement les locataires, vous informe des confirmations de paiement et génère les reçus après votre validation.
+
+CTA :
+Rejoindre l’accès anticipé
+
+Microcopy :
+Pensé pour les propriétaires africains qui gèrent leurs loyers avec cahier, WhatsApp, appels, Mobile Money ou reçus papier.
+
+Sections à adapter :
+
+1. Problème
+   Aujourd’hui, beaucoup de propriétaires doivent se souvenir eux-mêmes de qui doit payer, qui est en retard, qui a envoyé une capture, qui a reçu un reçu, et qui doit être relancé.
+
+2. Solution
+   Avec Ranti, le bail devient la source de vérité. Une fois le bail renseigné, Ranti suit les échéances, déclenche les relances, centralise les confirmations et prépare les reçus.
+
+3. Comment ça marche
+
+* Ajoutez votre propriété et vos logements.
+* Renseignez le locataire et le bail.
+* Ranti crée les échéances.
+* Ranti relance automatiquement.
+* Le locataire confirme via un lien.
+* Vous validez l’encaissement.
+* Ranti génère et envoie le reçu.
+
+4. Ce que Ranti automatise
+
+* Le suivi des échéances.
+* Les rappels et relances.
+* La demande de confirmation au locataire.
+* La génération du reçu après validation du propriétaire.
+
+5. Ce que le propriétaire garde sous contrôle
+
+* La validation finale de l’encaissement.
+* Les informations du bail.
+* Les logements et locataires suivis.
+* La preuve finale de ce qui a été reçu.
+
+Contraintes :
+Ne pas présenter Ranti comme une banque, une marketplace, un CRM immobilier ou un outil comptable complet.
+Ne pas dire que Ranti confirme automatiquement qu’un paiement a été reçu.
+Ne pas dire que le paiement en ligne est obligatoire.
+Ne pas complexifier la page.
+La landing doit rester simple, mobile-first, claire et compréhensible en moins de 5 secondes.

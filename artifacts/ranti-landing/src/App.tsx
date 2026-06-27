@@ -8,7 +8,7 @@ import {
   motion, AnimatePresence,
   useInView, useMotionValue, useTransform, animate
 } from 'framer-motion';
-import { Check, Clock, FileText, ArrowRight, X, ChevronDown, Shield, Zap } from 'lucide-react';
+import { Check, Clock, FileText, ArrowRight, X, ChevronDown, Shield, Zap, Bell } from 'lucide-react';
 
 const queryClient = new QueryClient();
 const EASE = [0.21, 0.47, 0.32, 0.98] as const;
@@ -75,7 +75,7 @@ function RantiLogo({ size = 28 }: { size?: number }) {
 function DashboardCard() {
   const rows = [
     { name: "Aline", unit: "Chambre 1", status: "paid", detail: "Reçu prêt" },
-    { name: "Koffi", unit: "Boutique", status: "late", detail: "Relancer" },
+    { name: "Koffi", unit: "Boutique", status: "late", detail: "Relance envoyée" },
     { name: "Mireille", unit: "Appartement", status: "paid", detail: "Preuve disponible" },
     { name: "Omar", unit: "Studio", status: "paid", detail: "Reçu prêt" },
   ];
@@ -146,19 +146,19 @@ function Home() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const testimonials = [
-    { text: "Avant Ranti, je relançais mes locataires par WhatsApp et je perdais le fil. Maintenant je vois tout en un coup d'œil.", name: "Aminata K.", location: "Abidjan — 6 logements" },
-    { text: "En moins de dix minutes j'avais ajouté mes premiers locataires. Le reçu PDF, c'est ce que je faisais à la main avant.", name: "Jean-Paul M.", location: "Douala — 3 boutiques" },
-    { text: "Mes locataires paient en Mobile Money. Je prends une capture, je l'attache dans Ranti. C'est tout. Je n'ai plus besoin de mon cahier.", name: "Fatou D.", location: "Dakar — 11 logements" },
-    { text: "Simple, rapide, sans configuration. Exactement ce qu'il fallait pour ma petite activité de location.", name: "Moussa B.", location: "Bamako — 4 logements" },
-    { text: "Je recommande à tous les propriétaires qui gèrent encore leurs loyers sur papier. Le gain de temps est réel.", name: "Chantal N.", location: "Yaoundé — 7 logements" },
+    { text: "Avant, je relançais mes locataires moi-même par WhatsApp et je perdais le fil. Maintenant Ranti s'en charge. Je valide juste l'encaissement.", name: "Aminata K.", location: "Abidjan — 6 logements" },
+    { text: "J'ai renseigné mes baux en vingt minutes. Depuis, Ranti gère les relances. Le reçu PDF sort tout seul après ma validation — c'est ce que je faisais à la main avant.", name: "Jean-Paul M.", location: "Douala — 3 boutiques" },
+    { text: "Mes locataires reçoivent le lien de relance automatiquement. Ils confirment, je valide, le reçu part. Je n'ai plus besoin de mon cahier.", name: "Fatou D.", location: "Dakar — 11 logements" },
+    { text: "Simple, rapide, sans configuration. J'ai renseigné mes baux et Ranti a pris en charge les relances. Exactement ce qu'il me fallait.", name: "Moussa B.", location: "Bamako — 4 logements" },
+    { text: "Je recommande à tous les propriétaires qui gèrent encore leurs loyers sur papier. Ranti relance à votre place et génère les reçus. Le gain de temps est réel.", name: "Chantal N.", location: "Yaoundé — 7 logements" },
   ];
 
   const faqs = [
-    { q: "Mes locataires doivent-ils créer un compte ?", a: "Non. Ranti est votre outil privé. Vos locataires n'ont pas besoin de s'inscrire." },
-    { q: "Est-ce que Ranti encaisse les paiements à ma place ?", a: "Non. L'argent passe toujours par vous : cash, Mobile Money, virement. Ranti vous aide seulement à garder la trace de ce qui a été reçu." },
+    { q: "Mes locataires doivent-ils créer un compte ?", a: "Non. Ranti leur envoie un lien par message. Ils cliquent pour confirmer avoir payé — sans créer de compte. Ranti reste votre outil privé." },
+    { q: "Est-ce que Ranti encaisse les paiements à ma place ?", a: "Non. L'argent passe toujours par vous — cash, Mobile Money, virement. Ranti suit les échéances et relance automatiquement, mais c'est vous qui validez que le paiement a bien été encaissé." },
+    { q: "Est-ce que Ranti peut confirmer qu'un locataire a payé ?", a: "Non. Le locataire peut confirmer via le lien qu'il a payé, mais seul vous validez l'encaissement dans votre espace. Ranti ne valide jamais à votre place." },
     { q: "Mes données sont-elles en sécurité ?", a: "Oui. Vos données sont chiffrées et hébergées en toute sécurité. Vous seul avez accès à votre espace." },
-    { q: "Est-ce que ça fonctionne sans connexion stable ?", a: "Ranti fonctionne depuis un navigateur web. Une connexion de base suffit. Nous travaillons sur une version mobile optimisée." },
-    { q: "Puis-je exporter mes données ?", a: "Oui, vous pouvez générer des reçus PDF et consulter l'historique de tous vos paiements." },
+    { q: "Puis-je exporter mes données ?", a: "Oui, vous pouvez générer des reçus PDF et consulter l'historique de tous vos paiements et validations." },
   ];
 
   const heroWords = "Vos loyers, sans confusion.".split(" ");
@@ -245,7 +245,7 @@ function Home() {
               transition={{ duration: 0.7, delay: 0.5, ease: EASE }}
               className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed mb-10"
             >
-              Ranti aide les propriétaires à voir qui a payé, qui est en retard, et quelle preuve existe avant toute relance.
+              Renseignez vos baux une fois. Ranti suit les échéances, relance automatiquement vos locataires et génère les reçus après votre validation.
             </motion.p>
 
             {/* CTA pill */}
@@ -366,31 +366,36 @@ function Home() {
               className="text-center mb-20"
             >
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-3">Comment ça marche</p>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Trois étapes, c'est tout.</h2>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Renseignez le bail. Ranti fait le reste.</h2>
             </motion.div>
 
             <div className="flex flex-col gap-24">
               {[
                 {
                   num: "01",
-                  title: "Ajoutez vos logements",
-                  body: "Créez vos lieux, vos logements et ajoutez vos locataires en quelques minutes. Pas de configuration complexe — vous commencez à suivre le jour même.",
+                  title: "Renseignez vos logements et vos baux",
+                  body: "Ajoutez vos propriétés, logements et locataires. Renseignez le bail : montant du loyer, périodicité, date d'échéance. Ranti génère les échéances automatiquement.",
                   flip: false,
                   visual: (
                     <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-4 font-medium">Mes logements</p>
-                      {["Résidence Koumassi — 3 logements", "Villa Deux-Plateaux — 1 logement", "Immeuble Marcory — 4 logements"].map((l, i) => (
-                        <div key={i} className="flex items-center gap-3 py-3 border-b border-border last:border-b-0">
-                          <div className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center text-xs font-bold text-foreground">
-                            {i + 1}
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-4 font-medium">Bail — Studio Marcory</p>
+                      <div className="space-y-2.5 mb-4">
+                        {[
+                          { label: "Locataire", value: "Koffi Mensah" },
+                          { label: "Loyer mensuel", value: "75 000 FCFA" },
+                          { label: "Échéance", value: "Le 5 de chaque mois" },
+                          { label: "Début du bail", value: "1 jan. 2025" },
+                        ].map((row, i) => (
+                          <div key={i} className="flex items-center justify-between py-2 border-b border-border last:border-b-0">
+                            <span className="text-xs text-muted-foreground">{row.label}</span>
+                            <span className="text-xs font-semibold text-foreground">{row.value}</span>
                           </div>
-                          <span className="text-sm font-medium text-foreground">{l}</span>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                       <motion.div
                         animate={{ opacity: [0.4, 1, 0.4] }}
                         transition={{ duration: 2, repeat: Infinity }}
-                        className="mt-4 h-8 w-full rounded-lg border border-dashed border-border flex items-center justify-center text-xs text-muted-foreground gap-1.5"
+                        className="h-8 w-full rounded-lg border border-dashed border-border flex items-center justify-center text-xs text-muted-foreground gap-1.5"
                       >
                         + Ajouter un logement
                       </motion.div>
@@ -399,42 +404,42 @@ function Home() {
                 },
                 {
                   num: "02",
-                  title: "Enregistrez les paiements",
-                  body: "Cash, Mobile Money, virement — vous notez ce qui a été reçu et attachez une preuve si vous l'avez. Capture d'écran, photo, tout est accepté.",
+                  title: "Ranti relance, le locataire confirme",
+                  body: "Quand l'échéance approche ou devient en retard, Ranti envoie automatiquement un message au locataire avec un lien de confirmation. Vous êtes informé dès qu'il répond.",
                   flip: true,
                   visual: (
-                    <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-                      <p className="text-xs text-muted-foreground uppercase tracking-wider mb-4 font-medium">Enregistrer un paiement</p>
-                      <div className="space-y-3">
-                        <div className="p-3 rounded-xl bg-muted/40">
-                          <p className="text-xs text-muted-foreground mb-1">Locataire</p>
-                          <p className="text-sm font-semibold text-foreground">Aline — Chambre 1</p>
+                    <div className="rounded-2xl border border-border bg-card p-6 shadow-sm space-y-4">
+                      <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Relance automatique</p>
+                      <div className="p-4 rounded-xl bg-muted/40 border border-border">
+                        <div className="flex items-start gap-3">
+                          <div className="h-8 w-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Bell size={14} className="text-amber-600" />
+                          </div>
+                          <div>
+                            <p className="text-xs text-muted-foreground mb-1.5">Loyer novembre — Koffi, Studio</p>
+                            <p className="text-sm text-foreground leading-snug">"Votre loyer du 5 nov. est dû. Cliquez ici pour confirmer votre paiement."</p>
+                          </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-2">
-                          {["Cash", "Mobile Money", "Virement", "Autre"].map((m) => (
-                            <div key={m} className={`p-2.5 rounded-lg border text-xs font-medium text-center cursor-pointer transition-colors ${m === "Mobile Money" ? "border-primary bg-primary text-primary-foreground" : "border-border text-muted-foreground hover:border-foreground"}`}>
-                              {m}
-                            </div>
-                          ))}
-                        </div>
-                        <div className="flex items-center gap-2 p-3 rounded-xl border border-dashed border-border text-xs text-muted-foreground">
-                          <FileText size={14} />
-                          Joindre une preuve (optionnel)
-                        </div>
-                        <motion.div
-                          whileHover={{ scale: 1.01 }}
-                          className="h-10 rounded-xl bg-primary text-primary-foreground text-sm font-semibold flex items-center justify-center cursor-pointer"
-                        >
-                          Confirmer le paiement
-                        </motion.div>
                       </div>
+                      <div className="flex items-center justify-between p-3 rounded-xl border border-border bg-muted/20">
+                        <span className="text-xs text-muted-foreground">Koffi — Studio Marcory</span>
+                        <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-amber-50 text-amber-700">En attente</span>
+                      </div>
+                      <motion.div
+                        animate={{ opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 2.5, repeat: Infinity }}
+                        className="flex items-center gap-2 text-xs text-muted-foreground"
+                      >
+                        <div className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+                        En attente de confirmation du locataire
+                      </motion.div>
                     </div>
                   )
                 },
                 {
                   num: "03",
-                  title: "Gardez une vue claire",
-                  body: "Chaque mois, vous voyez qui a payé, qui est en retard, et vous générez un reçu en un clic. Fini les cahiers, fini les confusions.",
+                  title: "Vous validez, le reçu part tout seul",
+                  body: "Le locataire a confirmé avoir payé. Vous vérifiez et validez l'encaissement dans votre espace. Ranti génère le reçu PDF et l'envoie automatiquement au locataire.",
                   flip: false,
                   visual: (
                     <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm">
@@ -443,23 +448,21 @@ function Home() {
                         <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-full">Novembre</span>
                       </div>
                       {[
-                        { name: "Aline", status: "Payé", color: "emerald" },
-                        { name: "Koffi", status: "En retard", color: "amber" },
-                        { name: "Mireille", status: "Payé", color: "emerald" },
+                        { name: "Aline", status: "Validé", badge: "bg-emerald-50 text-emerald-700", action: "Reçu PDF" },
+                        { name: "Koffi", status: "Confirmé", badge: "bg-blue-50 text-blue-700", action: "Valider" },
+                        { name: "Mireille", status: "Validé", badge: "bg-emerald-50 text-emerald-700", action: "Reçu PDF" },
                       ].map((r, i) => (
                         <div key={i} className="px-5 py-3.5 flex items-center justify-between border-b border-border last:border-b-0">
                           <span className="text-sm font-medium text-foreground">{r.name}</span>
-                          <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${r.color === "emerald" ? "bg-emerald-50 text-emerald-700" : "bg-amber-50 text-amber-700"}`}>
+                          <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${r.badge}`}>
                             {r.status}
                           </span>
-                          {r.status === "Payé" && (
-                            <motion.button
-                              whileHover={{ scale: 1.04 }}
-                              className="text-xs text-muted-foreground border border-border rounded-lg px-3 py-1.5 hover:bg-muted/50 transition-colors"
-                            >
-                              Reçu PDF
-                            </motion.button>
-                          )}
+                          <motion.button
+                            whileHover={{ scale: 1.04 }}
+                            className={`text-xs border rounded-lg px-3 py-1.5 transition-colors ${r.action === "Valider" ? "border-primary bg-primary text-primary-foreground" : "border-border text-muted-foreground hover:bg-muted/50"}`}
+                          >
+                            {r.action}
+                          </motion.button>
                         </div>
                       ))}
                     </div>
@@ -505,7 +508,7 @@ function Home() {
               transition={{ duration: 0.85, ease: EASE }}
               className="text-center mb-16"
             >
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">La clarté, un mois après l'autre.</h2>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Ce que Ranti fait pour vous.</h2>
             </motion.div>
 
             <motion.div
@@ -516,12 +519,12 @@ function Home() {
               variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
             >
               {[
-                { icon: <Check size={20} />, title: "Qui a payé", body: "Vue instantanée des paiements confirmés du mois, logement par logement." },
-                { icon: <Clock size={20} />, title: "Qui est en retard", body: "Identifiez immédiatement les locataires qui n'ont pas encore payé." },
-                { icon: <FileText size={20} />, title: "Quelle preuve existe", body: "Capture, reçu ou note — chaque paiement a sa trace." },
-                { icon: <Shield size={20} />, title: "Vous gardez le contrôle", body: "Ranti ne confirme rien automatiquement. Vous validez tout vous-même." },
-                { icon: <Zap size={20} />, title: "Reçus en un clic", body: "Générez un reçu PDF propre à envoyer à votre locataire, sans effort." },
-                { icon: <ArrowRight size={20} />, title: "Adapté au terrain", body: "Cash, Mobile Money, virement — tous les modes de paiement africains." },
+                { icon: <Bell size={20} />, title: "Relances automatiques", body: "Ranti envoie la relance au bon moment selon les règles du bail. Pas besoin d'y penser." },
+                { icon: <Check size={20} />, title: "Confirmation par le locataire", body: "Le locataire reçoit un lien et confirme avoir payé. Vous êtes informé immédiatement." },
+                { icon: <Shield size={20} />, title: "Vous validez l'encaissement", body: "Seul vous confirmez qu'un paiement a bien été reçu. Ranti ne valide jamais à votre place." },
+                { icon: <FileText size={20} />, title: "Reçus générés automatiquement", body: "Après votre validation, le reçu PDF est créé et envoyé au locataire. Zéro effort." },
+                { icon: <Clock size={20} />, title: "Suivi des échéances", body: "Ranti calcule les dates de paiement à partir du bail et les suit mois après mois." },
+                { icon: <Zap size={20} />, title: "Adapté au terrain africain", body: "Cash, Mobile Money, virement — tous les modes de paiement pris en charge." },
               ].map((f, i) => (
                 <motion.div
                   key={i}
@@ -563,10 +566,10 @@ function Home() {
               variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
             >
               {[
-                { title: "Pas un logiciel compliqué", body: "Aucune configuration. Vous ajoutez vos logements et vous commencez." },
-                { title: "Pas une banque", body: "L'argent ne passe pas par nous. Vous encaissez comme d'habitude." },
-                { title: "Pas une marketplace", body: "Vos locataires ne créent pas de compte. C'est votre outil privé." },
-                { title: "Pas un outil comptable", body: "Pas de bilan, pas de taxes. Juste le suivi des loyers." },
+                { title: "Pas un logiciel compliqué", body: "Renseignez vos baux en quelques minutes. Ranti prend en charge le suivi dès le premier jour." },
+                { title: "Pas une banque", body: "L'argent passe toujours par vous — cash, Mobile Money, virement. Ranti relance, mais n'encaisse pas." },
+                { title: "Pas une marketplace", body: "Vos locataires n'ont pas de compte. Ils reçoivent un lien, confirment, c'est tout." },
+                { title: "Pas un outil comptable", body: "Pas de bilan, pas de taxes. Juste vos baux, vos loyers et vos reçus." },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -677,7 +680,7 @@ function Home() {
               transition={{ duration: 0.9, ease: EASE }}
               className="text-4xl md:text-5xl font-bold tracking-tight mb-6"
             >
-              Commencez par suivre un seul logement.
+              Renseignez un bail. Ranti s'occupe du reste.
             </motion.h2>
 
             <motion.p
@@ -687,7 +690,7 @@ function Home() {
               transition={{ duration: 0.75, delay: 0.15, ease: EASE }}
               className="text-lg text-muted-foreground mb-10 max-w-md"
             >
-              Ajoutez un lieu, un logement, un locataire, puis suivez les loyers du mois.
+              Ajoutez vos logements, renseignez vos baux. Ranti suit les échéances, relance vos locataires et génère les reçus après votre validation.
             </motion.p>
 
             <motion.div

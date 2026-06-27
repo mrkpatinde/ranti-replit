@@ -1,0 +1,173 @@
+Lis d’abord les documents `.md` du repo avant de modifier la landing page, puis adapte le wording pour qu’il reflète mieux la vraie logique produit de Ranti.
+
+
+
+Clarification importante : Ranti n’est pas seulement un registre passif où le propriétaire regarde qui est en retard puis relance lui-même. Le propriétaire configure d’abord les informations du bail : propriété, logement, locataire, montant du loyer, périodicité, date d’échéance, date de début, etc.
+
+
+
+À partir du bail, Ranti doit comprendre les échéances de loyer et préparer le suivi automatiquement.
+
+
+
+Le cœur du wording doit être :
+
+
+
+“Le propriétaire renseigne le bail une fois. Ranti suit les échéances, relance automatiquement le locataire au bon moment, récupère la confirmation de paiement, puis permet au propriétaire de valider l’encaissement avant génération du reçu.”
+
+
+
+Flow produit à refléter dans la landing :
+
+
+
+1. Le propriétaire crée son espace.
+
+2. Il ajoute sa propriété et ses logements.
+
+3. Il renseigne le locataire et les informations du bail.
+
+4. Ranti génère les échéances de loyer à partir du bail.
+
+5. Quand une échéance approche ou devient en retard, Ranti envoie automatiquement une relance au locataire.
+
+6. Le message de relance contient un lien.
+
+7. Le locataire ouvre le lien et confirme qu’il a déjà payé.
+
+8. Ranti informe le propriétaire.
+
+9. Le propriétaire vérifie et valide l’encaissement dans son espace.
+
+10. Une fois l’encaissement validé, Ranti génère automatiquement le reçu ou la quittance.
+
+11. Le reçu est envoyé au locataire et reste disponible comme preuve.
+
+
+
+Point clé de wording :
+
+
+
+Ne dis pas que “le propriétaire relance le locataire” comme si tout était manuel. Dis plutôt que “Ranti relance automatiquement selon les règles du bail”, tout en gardant le propriétaire comme personne qui confirme réellement l’encaissement.
+
+
+
+Le propriétaire reste celui qui valide qu’un paiement a bien été reçu. Ranti ne doit jamais prétendre confirmer un paiement sans validation du propriétaire.
+
+
+
+Positionnement à garder :
+
+
+
+Ranti est le registre de loyers moderne des propriétaires africains.
+
+
+
+Promesse à mettre en avant :
+
+
+
+Le propriétaire renseigne ses baux une fois. Ensuite, Ranti l’aide à savoir qui doit payer, qui a confirmé avoir payé, ce qui reste en retard, quelles preuves existent et quels reçus ont été générés.
+
+
+
+Message principal côté propriétaire :
+
+
+
+Ajoutez vos logements, vos locataires et vos baux. Ranti suit les échéances, relance automatiquement les locataires, vous informe des confirmations de paiement et génère les reçus après votre validation.
+
+
+
+
+
+
+
+Section “Comment ça marche” :
+
+
+
+* Ajoutez votre propriété et vos logements.
+
+* Renseignez le locataire et le bail.
+
+* Ranti crée les échéances.
+
+* Ranti relance automatiquement.
+
+* Le locataire confirme via un lien.
+
+* Vous validez l’encaissement.
+
+* Ranti génère et envoie le reçu.
+
+
+
+Section “Ce que Ranti automatise” :
+
+
+
+* Le suivi des échéances.
+
+* Les rappels et relances.
+
+* La demande de confirmation au locataire.
+
+* La génération du reçu après validation du propriétaire.
+
+
+
+Section “Ce que le propriétaire garde sous contrôle” :
+
+
+
+* La validation finale de l’encaissement.
+
+* Les informations du bail.
+
+* Les logements et locataires suivis.
+
+* La preuve finale de ce qui a été reçu.
+
+
+
+Contraintes importantes :
+
+
+
+Ne pas présenter Ranti comme une banque, une marketplace, un CRM immobilier ou un logiciel comptable complet.
+
+
+
+Ne pas dire que Ranti confirme automatiquement qu’un paiement a été reçu. Le locataire peut confirmer qu’il a payé, mais seul le propriétaire valide l’encaissement.
+
+
+
+Ne pas dire que le paiement en ligne est obligatoire.
+
+
+
+Ne pas complexifier la page.
+
+
+
+La landing doit rester simple, mobile-first, claire et compréhensible en moins de 5 secondes.
+
+
+
+Objectif final :
+
+
+
+En ouvrant la landing page, un propriétaire doit comprendre immédiatement :
+
+
+
+“Je renseigne mes baux une fois. Ensuite Ranti suit les loyers, relance les locataires, me prévient quand ils confirment avoir payé, et génère les reçus après ma validation.”
+
+
+
+Ranti c'est : “Le registre de loyers moderne, aussi simple qu’un cahier.”
