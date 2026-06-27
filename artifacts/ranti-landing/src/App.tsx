@@ -291,7 +291,7 @@ function Home() {
               {[
                 { value: 320, suffix: "+", label: "propriétaires actifs" },
                 { value: 4200, suffix: "", label: "loyers suivis" },
-                { value: 12, suffix: "", label: "pays" },
+                { value: 1, suffix: "", label: "pays (pilote Bénin)" },
               ].map((s, i) => (
                 <div key={i} className="flex items-baseline gap-2">
                   <span className="text-2xl font-bold text-foreground tracking-tight">
