@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -6,24 +6,12 @@ import NotFound from '@/pages/not-found';
 import { Route, Switch, Router as WouterRouter } from 'wouter';
 import {
   motion, AnimatePresence,
-  useInView, useMotionValue, useTransform, animate
 } from 'framer-motion';
 import { Check, Clock, FileText, ArrowRight, X, ChevronDown, Shield, Zap, Bell } from 'lucide-react';
 
 const queryClient = new QueryClient();
 const EASE = [0.21, 0.47, 0.32, 0.98] as const;
 
-// ─── CountUp ────────────────────────────────────────────────────────────────
-function CountUp({ target, prefix = "", suffix = "" }: { target: number; prefix?: string; suffix?: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (v) => Math.round(v).toLocaleString("fr-FR"));
-  useEffect(() => {
-    if (isInView) animate(count, target, { duration: 1.8, ease: "easeOut" });
-  }, [isInView, count, target]);
-  return <span ref={ref}>{prefix}<motion.span>{rounded}</motion.span>{suffix}</span>;
-}
 
 // ─── FaqItem ─────────────────────────────────────────────────────────────────
 function FaqItem({ q, a, index, openIndex, setOpenIndex }: {
@@ -100,7 +88,7 @@ function DashboardCard() {
   const rows = [
     { name: "Aline", unit: "Chambre 1", status: "paid", detail: "Reçu prêt" },
     { name: "Koffi", unit: "Boutique", status: "late", detail: "Relance envoyée" },
-    { name: "Mireille", unit: "Appartement", status: "paid", detail: "Preuve disponible" },
+    { name: "Mireille", unit: "Appartement", status: "paid", detail: "Reçu envoyé" },
     { name: "Omar", unit: "Studio", status: "paid", detail: "Reçu prêt" },
   ];
   return (
@@ -113,15 +101,15 @@ function DashboardCard() {
         </div>
         <div className="flex items-center gap-2">
           <div className="h-2 w-2 rounded-full bg-emerald-500" />
-          <span className="text-xs text-muted-foreground font-medium">Novembre 2025</span>
+          <span className="text-xs text-muted-foreground font-medium">Juin 2026</span>
         </div>
       </div>
       {/* Stats */}
       <div className="grid grid-cols-4 border-b border-border bg-muted/20">
         {[
-          { label: "Attendus", value: "8", color: "text-foreground" },
-          { label: "Payés", value: "5", color: "text-emerald-600" },
-          { label: "En retard", value: "3", color: "text-amber-600" },
+          { label: "Attendus", value: "4", color: "text-foreground" },
+          { label: "Payés", value: "3", color: "text-emerald-600" },
+          { label: "En retard", value: "1", color: "text-amber-600" },
           { label: "Reçus", value: "2", color: "text-foreground" },
         ].map((s) => (
           <div key={s.label} className="px-4 py-3 flex flex-col gap-0.5">
@@ -298,28 +286,6 @@ function Home() {
             </motion.p>
           </div>
 
-          {/* Stats strip */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9, ease: EASE }}
-            className="relative mt-14 w-full border-t border-border py-5 bg-muted/20 backdrop-blur-sm"
-          >
-            <div className="max-w-4xl mx-auto px-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-3">
-              {[
-                { value: 320, prefix: "+", suffix: "", label: "propriétaires actifs" },
-                { value: 1200, prefix: "+", suffix: "", label: "loyers suivis" },
-              ].map((s, i) => (
-                <div key={i} className="flex items-baseline gap-2">
-                  <span className="text-3xl font-bold text-foreground tracking-tight">
-                    <CountUp target={s.value} prefix={s.prefix} suffix={s.suffix} />
-                  </span>
-                  <span className="text-sm text-muted-foreground">{s.label}</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
           {/* Dashboard visual */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -365,7 +331,7 @@ function Home() {
                   body: "Ranti ne valide jamais un paiement à votre place. Vous seul confirmez qu'un loyer a été encaissé, avant que le reçu soit émis.",
                 },
                 {
-                  icon: <Shield size={18} />,
+                  icon: <FileText size={18} />,
                   title: "Vos données restent privées",
                   body: "Baux, locataires, encaissements : personne d'autre n'y accède. Données chiffrées, hébergées en sécurité, accessibles uniquement par vous.",
                 },
@@ -403,7 +369,7 @@ function Home() {
               transition={{ duration: 0.85, ease: EASE }}
               className="text-center mb-20"
             >
-              <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-3">Comment ça marche</p>
+              <p className="text-xs font-medium text-muted-foreground uppercase tracking-widest mb-3">Comment ça marche ?</p>
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Renseignez le bail. Ranti automatise le suivi.</h2>
             </motion.div>
 
@@ -454,8 +420,8 @@ function Home() {
                             <Bell size={14} className="text-amber-600" />
                           </div>
                           <div>
-                            <p className="text-xs text-muted-foreground mb-1.5">Loyer novembre · Koffi, Studio</p>
-                            <p className="text-sm text-foreground leading-snug">"Votre loyer du 5 nov. est dû. Cliquez ici pour confirmer votre paiement."</p>
+                            <p className="text-xs text-muted-foreground mb-1.5">Loyer juin · Koffi, Studio</p>
+                            <p className="text-sm text-foreground leading-snug">"Votre loyer du 5 juin est dû. Cliquez ici pour confirmer votre paiement."</p>
                           </div>
                         </div>
                       </div>
@@ -483,7 +449,7 @@ function Home() {
                     <div className="rounded-2xl border border-border bg-card overflow-hidden shadow-sm">
                       <div className="px-5 py-4 border-b border-border flex justify-between items-center">
                         <span className="text-sm font-semibold text-foreground">Vue du mois</span>
-                        <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-full">Novembre</span>
+                        <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-full">Juin 2026</span>
                       </div>
                       {[
                         { name: "Aline", status: "Validé", badge: "bg-emerald-50 text-emerald-700", action: "Reçu PDF" },
