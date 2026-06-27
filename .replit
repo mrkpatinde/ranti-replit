@@ -29,8 +29,8 @@ outputType = "webview"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "PORT=5173 BASE_PATH=/ cd artifacts/ranti-landing && PORT=5173 BASE_PATH=/ pnpm dev"
-waitForPort = 5173
+args = "PORT=20724 BASE_PATH=/ pnpm --filter @workspace/ranti-landing run dev"
+waitForPort = 20724
 
 [agent]
 stack = "PNPM_WORKSPACE"

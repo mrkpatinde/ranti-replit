@@ -1,0 +1,1 @@
+- [Ranti-landing workflow config](ranti-landing-workflow.md) — artifact uses PORT=20724 BASE_PATH=/, not default Vite port 5173.
