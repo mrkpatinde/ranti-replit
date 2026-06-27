@@ -86,11 +86,11 @@ function LedgerMark({ className = "text-foreground/30" }: { className?: string }
   );
 }
 
-/** Nom Ranti en logotype — thin aéré + black serré */
+/** Nom Ranti en logotype split-weight */
 function RantiWordmark({ size = "text-lg" }: { size?: string }) {
   return (
-    <span className={`${size} leading-none select-none`} aria-label="Ranti">
-      <span className="font-thin tracking-[0.18em] text-foreground/60">RAN</span><span className="font-black tracking-[-0.03em] text-foreground">TI</span>
+    <span className={`${size} tracking-tight leading-none select-none`} aria-label="Ranti">
+      <span className="font-light text-foreground">Ran</span><span className="font-black text-foreground">ti</span>
     </span>
   );
 }
@@ -505,7 +505,7 @@ function Home() {
                     viewport={{ once: true, margin: "0px" }}
                     transition={{ duration: 0.9, ease: EASE }}
                   >
-                    <span className="text-4xl font-bold text-muted/60 mb-4 font-mono">{step.num}</span>
+                    <span className="text-4xl font-bold text-foreground/25 mb-4 font-mono">{step.num}</span>
                     <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-4">{step.title}</h3>
                     <p className="text-muted-foreground leading-relaxed">{step.body}</p>
                   </motion.div>
