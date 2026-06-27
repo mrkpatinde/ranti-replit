@@ -14,7 +14,7 @@ const queryClient = new QueryClient();
 const EASE = [0.21, 0.47, 0.32, 0.98] as const;
 
 // ─── CountUp ────────────────────────────────────────────────────────────────
-function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
+function CountUp({ target, prefix = "", suffix = "" }: { target: number; prefix?: string; suffix?: string }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const count = useMotionValue(0);
@@ -22,7 +22,7 @@ function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
   useEffect(() => {
     if (isInView) animate(count, target, { duration: 1.8, ease: "easeOut" });
   }, [isInView, count, target]);
-  return <span ref={ref}><motion.span>{rounded}</motion.span>{suffix}</span>;
+  return <span ref={ref}>{prefix}<motion.span>{rounded}</motion.span>{suffix}</span>;
 }
 
 // ─── FaqItem ─────────────────────────────────────────────────────────────────
@@ -289,12 +289,12 @@ function Home() {
           >
             <div className="max-w-4xl mx-auto px-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-3">
               {[
-                { value: 320, suffix: "+", label: "propriétaires actifs" },
-                { value: 4200, suffix: "", label: "loyers suivis" },
+                { value: 320, prefix: "+", suffix: "", label: "propriétaires actifs" },
+                { value: 1200, prefix: "+", suffix: "", label: "loyers suivis" },
               ].map((s, i) => (
                 <div key={i} className="flex items-baseline gap-2">
                   <span className="text-2xl font-bold text-foreground tracking-tight">
-                    <CountUp target={s.value} suffix={s.suffix} />
+                    <CountUp target={s.value} prefix={s.prefix} suffix={s.suffix} />
                   </span>
                   <span className="text-sm text-muted-foreground">{s.label}</span>
                 </div>
@@ -649,6 +649,54 @@ function Home() {
           </div>
         </section>
 
+        {/* ── EXPÉRIENCE HUMAINE ───────────────────────────────────────────── */}
+        <section className="py-24 border-t border-border">
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "0px" }}
+                transition={{ duration: 0.85, ease: EASE }}
+              >
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-5">
+                  Une expérience humaine, pas seulement un logiciel.
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  Ranti est pensé pour s'adapter à votre vraie manière de gérer les loyers — pas pour vous imposer une nouvelle façon de faire. Un accompagnement proche du terrain pour bien démarrer et garder le contrôle.
+                </p>
+              </motion.div>
+
+              <motion.ul
+                className="space-y-4 pt-1"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "0px" }}
+                variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+              >
+                {[
+                  "Prise en main en moins de dix minutes.",
+                  "Un support humain pour bien démarrer.",
+                  "Pensé pour les réalités africaines.",
+                  "Moins de confusion, plus de tranquillité.",
+                  "Construit avec les retours du terrain.",
+                ].map((item, i) => (
+                  <motion.li
+                    key={i}
+                    variants={{ hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: EASE } } }}
+                    className="flex items-center gap-3"
+                  >
+                    <div className="h-5 w-5 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
+                      <Check size={11} className="text-foreground" />
+                    </div>
+                    <span className="text-foreground font-medium">{item}</span>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </div>
+          </div>
+        </section>
+
         {/* ── FAQ ──────────────────────────────────────────────────────────── */}
         <section className="py-24">
           <div className="max-w-2xl mx-auto px-6">
@@ -721,7 +769,7 @@ function Home() {
             <RantiLogo size={20} />
             <span className="text-sm font-semibold text-foreground">Ranti</span>
           </a>
-          <p className="text-xs text-muted-foreground">© 2025 Ranti. Tous droits réservés.</p>
+          <p className="text-xs text-muted-foreground">© 2026 Ranti. Tous droits réservés.</p>
           <div className="flex items-center gap-6">
             <a href="/login" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Se connecter</a>
             <a href="/signup" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Ouvrir un espace</a>
